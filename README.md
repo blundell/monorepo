@@ -1,0 +1,1 @@
+A mono-repository containing multiple Android apps sharing library modules.
