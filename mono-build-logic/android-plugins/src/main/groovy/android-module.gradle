@@ -1,0 +1,42 @@
+afterEvaluate { project ->
+    if (project.hasProperty("android")) {
+        android {
+            compileSdk 31
+
+            defaultConfig {
+                minSdk 28
+                targetSdk 30
+
+                vectorDrawables {
+                    useSupportLibrary true
+                }
+
+                testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+            }
+
+            testOptions {
+                unitTests.returnDefaultValues = true
+            }
+            composeOptions {
+                kotlinCompilerExtensionVersion compose_version
+            }
+            packagingOptions {
+                resources {
+                    excludes += "/META-INF/{AL2.0,LGPL2.1}"
+                }
+            }
+            compileOptions {
+                sourceCompatibility JavaVersion.VERSION_11
+                targetCompatibility JavaVersion.VERSION_11
+            }
+            kotlinOptions {
+                jvmTarget = "11"
+                useIR = true
+            }
+            buildFeatures {
+                compose true
+            }
+        }
+    }
+}
+
