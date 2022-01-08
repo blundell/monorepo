@@ -3,6 +3,10 @@ plugins {
 }
 
 dependencies {
+    val implementation by configurations
+    val debugImplementation by configurations
+    val testImplementation by configurations
+
     implementation(project(":http"))
     implementation(project(":logging"))
 

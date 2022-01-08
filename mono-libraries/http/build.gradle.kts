@@ -3,6 +3,9 @@ plugins {
 }
 
 dependencies {
+    val implementation by configurations
+    val testImplementation by configurations
+
     implementation(project(":logging"))
 
     implementation("androidx.core:core-ktx:1.6.0")
