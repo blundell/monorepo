@@ -19,7 +19,7 @@ import modularisation.blundell.library.logging.api.LoggBootstrapper
 
 class MainActivity : ComponentActivity() {
 
-    private val logg: Logg = LoggBootstrapper.getLogger(BuildConfig.DEBUG)
+    private val logg: Logg = LoggBootstrapper.getLogger(BuildConfig.DEBUG, "TUT1")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -5,9 +5,9 @@ import modularisation.blundell.library.logging.ProductionLogg
 
 object LoggBootstrapper {
 
-    fun getLogger(buildConfigDebug: Boolean = false): Logg {
+    fun getLogger(buildConfigDebug: Boolean = false, logTag: String): Logg {
         if (buildConfigDebug) {
-            return DebugLogg()
+            return DebugLogg(logTag)
         } else {
             return ProductionLogg()
         }

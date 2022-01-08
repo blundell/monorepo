@@ -11,7 +11,7 @@ class AppViewModelFactory(
 ) : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        val logg = LoggBootstrapper.getLogger(BuildConfig.DEBUG)
+        val logg = LoggBootstrapper.getLogger(BuildConfig.DEBUG, "TUT1")
         val httpNetworker = HttpBootstrapper.getHttpNetworker(logg)
         @Suppress("UNCHECKED_CAST")
         return MainViewModel(
