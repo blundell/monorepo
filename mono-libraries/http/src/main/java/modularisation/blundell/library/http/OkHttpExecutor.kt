@@ -34,6 +34,9 @@ class OkHttpExecutor(
         } catch (e: InterruptedIOException) {
             logg.e("Interrupted exception.")
             return Result.failure(NetworkException(Timeout(e)))
+        } catch (e: Exception) {
+            logg.e("Catch all exception.")
+            return Result.failure(NetworkException(Timeout(e)))
         }
     }
 

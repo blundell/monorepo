@@ -1,5 +1,3 @@
-import com.blundell.systemPropertyIsInAppPurchaseTest
-
 plugins {
     id("android-module")
     id("com.android.application")
@@ -15,11 +13,7 @@ android {
         }
         getByName("debug") {
             isDebuggable = true
-            if (systemPropertyIsInAppPurchaseTest()) {
-                println(" IAP TEST - DEBUG BUILD WITH PROD PACKAGE NAME -")
-            } else {
-                applicationIdSuffix = ".debug"
-            }
+            applicationIdSuffix = ".debug"
         }
     }
 }

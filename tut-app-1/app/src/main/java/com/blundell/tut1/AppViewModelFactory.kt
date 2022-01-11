@@ -3,7 +3,6 @@ package com.blundell.tut1
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import modularisation.blundell.library.http.api.HttpBootstrapper
 import modularisation.blundell.library.logging.api.LoggBootstrapper
 
 class AppViewModelFactory(
@@ -12,11 +11,9 @@ class AppViewModelFactory(
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         val logg = LoggBootstrapper.getLogger(BuildConfig.DEBUG, "TUT1")
-        val httpNetworker = HttpBootstrapper.getHttpNetworker(logg)
         @Suppress("UNCHECKED_CAST")
         return MainViewModel(
             logg,
-            httpNetworker,
         ) as T
     }
 }

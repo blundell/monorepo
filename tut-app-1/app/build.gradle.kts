@@ -5,9 +5,7 @@ plugins {
 dependencies {
     val implementation by configurations
     val debugImplementation by configurations
-    val testImplementation by configurations
 
-    implementation(project(":http"))
     implementation(project(":logging"))
 
     val composeVersion = rootProject.extra["compose_version"]
@@ -23,6 +21,4 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.4.0")
 
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
-
-    testImplementation("junit:junit:latest.release")
 }

@@ -18,7 +18,7 @@ afterEvaluate { project ->
                 unitTests.returnDefaultValues = true
             }
             composeOptions {
-                kotlinCompilerExtensionVersion "1.1.0-rc02"
+                kotlinCompilerExtensionVersion compose_version
             }
             packagingOptions {
                 resources {

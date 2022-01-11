@@ -23,19 +23,20 @@ class MainViewModel(
         }
         viewModelScope.launch(Dispatchers.IO) {
             val content = httpNetworker
-                .getContent("https://your.westlancs.gov.uk/?uprn=100010662672")
+                .getContent("https://ip-fast.com/api/ip/")
             if (content.isSuccess) {
-                val contentHtml = content.getOrThrow()
+                val apiResultIp = content.getOrThrow()
                 try {
                     logg.d("Doing stuff")
                     delay(1000)
                     viewModelScope.launch(Dispatchers.Main) {
                         viewState.value = ViewState.Complete(
-                            "Completed stuff",
+                            "From https://ip-fast.com/api/ip/ " +
+                            "\nYour IP $apiResultIp",
                         )
                     }
                 } catch (ex: Exception) {
-                    logg.e("Failed to do stuff", IllegalStateException("Error in [$contentHtml]."))
+                    logg.e("Failed to do stuff", IllegalStateException("Error in [$apiResultIp]."))
                     viewModelScope.launch(Dispatchers.Main) {
                         viewState.value = ViewState.Error("Oh no! A reading error occurred, sorry about that.")
                     }

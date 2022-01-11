@@ -1,5 +1,3 @@
-import com.blundell.SemVersion
-
 plugins {
     id("app-android-module")
 }
@@ -7,10 +5,7 @@ plugins {
 android {
     defaultConfig {
         applicationId = "com.blundell.tut1"
-
-        SemVersion(0, 1, 0, 0).apply {
-            versionCode = asCode()
-            versionName = asName()
-        }
+        versionCode = 1
+        versionName = "1.0.0"
     }
 }

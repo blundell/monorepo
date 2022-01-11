@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -13,7 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.blundell.tut1.ui.theme.Tut1Theme
+import com.blundell.tut1.ui.theme.Tut2Theme
 import modularisation.blundell.library.logging.api.Logg
 import modularisation.blundell.library.logging.api.LoggBootstrapper
 
@@ -23,20 +24,13 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        logg.d("onCreate")
         val model: MainViewModel by viewModels {
             AppViewModelFactory(this.application)
         }
-        model.viewState.observe(this) { state ->
-            when (state) {
-                is ViewState.Complete -> logg.d("State complete.")
-                is ViewState.Error -> logg.d("State error.")
-                is ViewState.Loading -> logg.d("State loading.")
-                ViewState.Idle -> logg.d("State idle.")
-            }
-        }
         model.onStart()
         setContent {
-            Tut1Theme {
+            Tut2Theme {
                 val state by (viewModel() as MainViewModel).viewState.observeAsState(ViewState.Idle)
                 when (state) {
                     is ViewState.Idle -> {
@@ -55,7 +49,7 @@ class MainActivity : ComponentActivity() {
                     }
                     is ViewState.Error -> {
                         val stateError = state as ViewState.Error
-                        Surface(color = MaterialTheme.colors.background) {
+                        Surface(color = MaterialTheme.colors.error) {
                             Text(
                                 style = MaterialTheme.typography.h3,
                                 text = stateError.errorMessage,
@@ -65,11 +59,13 @@ class MainActivity : ComponentActivity() {
                     is ViewState.Loading -> {
                         val stateLoading = state as ViewState.Loading
                         Surface(color = MaterialTheme.colors.background) {
-                            CircularProgressIndicator()
-                            Text(
-                                style = MaterialTheme.typography.h3,
-                                text = "Loading... ${stateLoading.loadingMessage}",
-                            )
+                            Column {
+                                CircularProgressIndicator()
+                                Text(
+                                    style = MaterialTheme.typography.h3,
+                                    text = "Loading... ${stateLoading.loadingMessage}",
+                                )
+                            }
                         }
                     }
                 }
@@ -82,7 +78,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    Tut1Theme {
+    Tut2Theme {
         Text(text = "Hello ${"Android"}!")
     }
 }
