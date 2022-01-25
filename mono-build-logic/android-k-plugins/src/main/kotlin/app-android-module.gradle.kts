@@ -2,7 +2,6 @@ plugins {
     id("android-module")
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-kapt")
 }
 
 android {
