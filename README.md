@@ -1,5 +1,7 @@
 A mono-repository containing multiple Android apps sharing library modules.
 
+https://blog.blundellapps.co.uk/make-a-monorepo-for-your-android-projects/
+
 ### Gradle Build
 
 ```
